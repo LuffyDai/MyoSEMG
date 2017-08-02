@@ -1,0 +1,66 @@
+<RCC>
+  <qresource prefix="actions">
+    <file>actions/1.png</file>
+    <file>actions/2.png</file>
+    <file>actions/3.png</file>
+    <file>actions/4.png</file>
+    <file>actions/5.png</file>
+    <file>actions/6.png</file>
+    <file>actions/7.png</file>
+  </qresource>
+  <qresource prefix="qss_icons">
+    <file>darkstyle/rc/up_arrow_disabled.png</file>
+    <file>darkstyle/rc/Hmovetoolbar.png</file>
+    <file>darkstyle/rc/stylesheet-branch-end.png</file>
+    <file>darkstyle/rc/branch_closed-on.png</file>
+    <file>darkstyle/rc/stylesheet-vline.png</file>
+    <file>darkstyle/rc/branch_closed.png</file>
+    <file>darkstyle/rc/branch_open-on.png</file>
+    <file>darkstyle/rc/transparent.png</file>
+    <file>darkstyle/rc/right_arrow_disabled.png</file>
+    <file>darkstyle/rc/sizegrip.png</file>
+    <file>darkstyle/rc/close.png</file>
+    <file>darkstyle/rc/close-hover.png</file>
+    <file>darkstyle/rc/close-pressed.png</file>
+    <file>darkstyle/rc/down_arrow.png</file>
+    <file>darkstyle/rc/Vmovetoolbar.png</file>
+    <file>darkstyle/rc/left_arrow.png</file>
+    <file>darkstyle/rc/stylesheet-branch-more.png</file>
+    <file>darkstyle/rc/up_arrow.png</file>
+    <file>darkstyle/rc/right_arrow.png</file>
+    <file>darkstyle/rc/left_arrow_disabled.png</file>
+    <file>darkstyle/rc/Hsepartoolbar.png</file>
+    <file>darkstyle/rc/branch_open.png</file>
+    <file>darkstyle/rc/Vsepartoolbar.png</file>
+    <file>darkstyle/rc/down_arrow_disabled.png</file>
+    <file>darkstyle/rc/undock.png</file>
+    <file>darkstyle/rc/checkbox_checked_disabled.png</file>
+    <file>darkstyle/rc/checkbox_checked_focus.png</file>
+    <file>darkstyle/rc/checkbox_checked.png</file>
+    <file>darkstyle/rc/checkbox_indeterminate.png</file>
+    <file>darkstyle/rc/checkbox_indeterminate_focus.png</file>
+    <file>darkstyle/rc/checkbox_unchecked_disabled.png</file>
+    <file>darkstyle/rc/checkbox_unchecked_focus.png</file>
+    <file>darkstyle/rc/checkbox_unchecked.png</file>
+    <file>darkstyle/rc/radio_checked_disabled.png</file>
+    <file>darkstyle/rc/radio_checked_focus.png</file>
+    <file>darkstyle/rc/radio_checked.png</file>
+    <file>darkstyle/rc/radio_unchecked_disabled.png</file>
+    <file>darkstyle/rc/radio_unchecked_focus.png</file>
+    <file>darkstyle/rc/radio_unchecked.png</file>
+  </qresource>
+  <qresource prefix="darkstyle">
+    <file>darkstyle/style.qss</file>
+  </qresource>
+  <qresource prefix="SystemMenu">
+    <file>BorderlessWindow.css</file>
+    <file>Icons/Close.png</file>
+    <file>Icons/CloseHover.png</file>
+    <file>Icons/Maximize.png</file>
+    <file>Icons/MaximizeHover.png</file>
+    <file>Icons/Minimize.png</file>
+    <file>Icons/MinimizeHover.png</file>
+    <file>Icons/Restore.png</file>
+    <file>Icons/RestoreHover.png</file>
+  </qresource>
+</RCC>

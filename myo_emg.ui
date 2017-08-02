@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>821</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MyoSEMG</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="1" column="1">
+     <widget class="QListWidget" name="listWidget">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>270</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="3" rowspan="2">
+     <widget class="QListWidget" name="listWidget_2">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>73</width>
+        <height>16777215</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QMdiArea" name="mdiArea">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>330</width>
+        <height>0</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout_2"/>
+    </item>
+    <item row="2" column="2">
+     <widget class="QMdiArea" name="mdiArea_2"/>
+    </item>
+    <item row="1" column="2">
+     <widget class="QTreeView" name="treeView"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>821</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <widget class="QMenu" name="menuDevice">
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="title">
+     <string>Device</string>
+    </property>
+    <addaction name="actionMyo"/>
+    <addaction name="actionCamera"/>
+   </widget>
+   <widget class="QMenu" name="menuCapture">
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="title">
+     <string>Capture</string>
+    </property>
+    <widget class="QMenu" name="menuCapture_SEMG">
+     <property name="title">
+      <string>Capture SEMG</string>
+     </property>
+    </widget>
+    <addaction name="menuCapture_SEMG"/>
+    <addaction name="actionCapture_IMU"/>
+   </widget>
+   <widget class="QMenu" name="menuSession">
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="title">
+     <string>Session</string>
+    </property>
+    <addaction name="actionStart_Capture"/>
+    <addaction name="actionStop_Capture"/>
+    <addaction name="actionSave"/>
+   </widget>
+   <widget class="QMenu" name="menuProfile">
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="title">
+     <string>Profile</string>
+    </property>
+    <addaction name="actionSave_Profile"/>
+    <addaction name="actionLoad_Profile"/>
+   </widget>
+   <addaction name="menuDevice"/>
+   <addaction name="menuCapture"/>
+   <addaction name="menuSession"/>
+   <addaction name="menuProfile"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+  </widget>
+  <action name="actionMyo">
+   <property name="text">
+    <string>Myo</string>
+   </property>
+  </action>
+  <action name="actionCamera">
+   <property name="text">
+    <string>Camera</string>
+   </property>
+  </action>
+  <action name="actionCapture_IMU">
+   <property name="text">
+    <string>Capture IMU</string>
+   </property>
+  </action>
+  <action name="actionStart_Capture">
+   <property name="text">
+    <string>Start Capture</string>
+   </property>
+  </action>
+  <action name="actionStop_Capture">
+   <property name="text">
+    <string>Stop Capture</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="text">
+    <string>Save</string>
+   </property>
+  </action>
+  <action name="actionSave_Profile">
+   <property name="text">
+    <string>Save Profile</string>
+   </property>
+  </action>
+  <action name="actionLoad_Profile">
+   <property name="text">
+    <string>Load Profile</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="myo_emg.qrc"/>
+ </resources>
+ <connections/>
+</ui>
