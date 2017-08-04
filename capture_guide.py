@@ -5,7 +5,7 @@ from include import Config
 from PyQt5.QtCore import QTimer,QTime
 from PyQt5.QtGui import QPixmap
 import capture,myo_emg
-
+#晕
 
 
 
