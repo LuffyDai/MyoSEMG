@@ -2,14 +2,15 @@
 #._*_ coding:utf-8 _*_
 
 from include import Config
-from PyQt5.QtCore import QTimer,QTime
+from PyQt5.QtCore import QTimer,pyqtSignal
 from PyQt5.QtGui import QPixmap
-import capture,myo_emg
-#晕
+import myo_emg,capture
+
 
 
 
 class capture_guide(object):
+
 
     def __init__(self):
         conf = Config.Config().conf
@@ -20,27 +21,40 @@ class capture_guide(object):
         self.repeat_times = len(conf["guide_config"]["gestures"])#重复手势的次数
         self.capture_timer = QTimer()#capture的计时器
         self.rest_timer = QTimer()#rest的计时器
-        self.state = 1 #当前的状态，0表示capture,1表示rest,2表示采集暂停状态，3表示采集结束状态
+        self.state = -1 #当前的状态，0表示capture,1表示rest,2表示采集暂停状态，3表示采集结束状态,-1表示采集开始前的状态
         self.current_times = 0 #当前的重复次数
         self.RestTime = self.interval/1000
         self.CaptureTime = self.span/1000
         self.spacing = 100
+        self.dataPath = conf["capture_config"]["path"]
+        self.videoPath = conf["capture_config"]["video_path"]
 
 
     def start(self,ui = myo_emg.Ui_MainWindow()):#该函数需要与start capture连接起来
-
-        self.rest_timer.start(self.spacing)
-        image_path = "D:/MyoSEMG/"+self.dataset_type+"/"+str(self.gesture_type)+".jpg"
+        if self.state == -1 :
+            self.state = 1
+            ui.listWidget.addItem('Start Capture...')
+        else:
+            ui.listWidget.addItem('Restart Capture...')
+        image_path = self.dataset_type+"/"+str(self.gesture_type)+".jpg"
         gesture_png = QPixmap(image_path).scaled(ui.gesture_image.geometry().width(),ui.gesture_image.geometry().height())
         ui.gesture_image.setPixmap(gesture_png)
-        ui.Timer.setText("{:.1f}".format(self.RestTime))
+        if self.RestTime >= self.spacing/2000:
+            self.rest_timer.start(self.spacing)
+            ui.Timer.setText("{:.1f}".format(self.RestTime))
+        else:
+            self.capture_timer.start(self.spacing)
+            ui.Timer.setText("{:.1f}".format(self.CaptureTime))
 
-    def stop(self):#该函数需要与stop capture连接起来
-        self.state = 2
+
+    def stop(self,ui = myo_emg.Ui_MainWindow()):#该函数需要与stop capture连接起来
+
         if self.state:
             self.rest_timer.stop()
         else:
             self.capture_timer.stop()
+        self.state = 2
+        ui.listWidget.addItem('Capture Stop...')
 
     def rest_event(self,ui = myo_emg.Ui_MainWindow()):
 
@@ -67,7 +81,8 @@ class capture_guide(object):
                 self.state = 1#进入休息状态
                 ui.Timer.setText("{:.1f}".format(self.RestTime))#再次开始rest阶段
             else:
-                self.state = 2#代表采集完全结束
+                self.state = 3#代表采集完全结束
+                ui.listWidget.addItem('Capture Complete...')
 
 
 
