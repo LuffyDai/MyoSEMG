@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import *
 
 class WorkThread(QThread):
     _signal = pyqtSignal()
-    def __init__(self,myos,hub,Data,guide,cap_interval):#cap_interval表示每隔多久采集一次数据，相当于运行一次run里面的循环
+    def __init__(self,myos,hub,Data,guide,cap_interval,canvas,canvas2):#cap_interval表示每隔多久采集一次数据，相当于运行一次run里面的循环
         super(WorkThread,self).__init__()
         self.myos = myos
         self.hub = hub
@@ -15,26 +15,43 @@ class WorkThread(QThread):
         self.guide = guide
         self.flag = 1
         self.cap_interval = cap_interval
+        self.canvas = canvas
+        self.canvas2 = canvas2
         self._signal.connect(self.stop)
 
 
     def run(self):#重写
         while self.myos.connected and self.hub.running:
             if self.flag == 1:
-                emg = self.myos.emg
+                self.emg = self.myos.emg
+                if self.emg is not None:
+                    self.canvas.emg_data = self.emg[0]
+                    self.canvas.emg_data2 = self.emg[1]
+                    self.canvas.emg_data3 = self.emg[2]
+                    self.canvas.emg_data4 = self.emg[3]
+                    self.canvas.time_data= time.time()
+
+                    self.canvas2.emg_data = self.emg[4]
+                    self.canvas2.emg_data2 = self.emg[5]
+                    self.canvas2.emg_data3 = self.emg[6]
+                    self.canvas2.emg_data4 = self.emg[7]
+                    self.canvas2.time_data = time.time()
+
+                    #self.canvas.plot_signal.emit()
                 acceleration = self.myos.acceleration
                 gyroscope = self.myos.gyroscope
                 orientation = self.myos.orientation
                 if self.guide.state >= 0 and self.guide.state < 2:#点击Start Capture才开始保存数据
                     if self.Data.IfCapture_EMG:
-                        emgdata = myoData.emgData(time.time(),emg,self.guide.state)
+                        emgdata = myoData.emgData(time.time(),self.emg,self.guide.state)
                         self.Data.EMGdata.append(emgdata)
                     if self.Data.IfCapture_IMU:
                         imudata = myoData.imuData(time.time(),acceleration,gyroscope,orientation,self.guide.state)
                         self.Data.IMUdata.append(imudata)
-                    time.sleep(self.cap_interval)
+
                 elif self.guide.state == 3 or self.guide.state == 2:
                     self.exec_()
+                time.sleep(self.cap_interval)
             else:
                 exit(0)
 
@@ -44,10 +61,11 @@ class WorkThread(QThread):
 
 
 
-class capture():
+class capture(QObject):
 
     def __init__(self,spacing = 10000,wait_time = 2.0,cap_interval = 0.001):#默认采集间隔为1ms
         #myo设备的处理
+        super(capture,self).__init__()
         self.spacing = spacing
         self.wait_time = wait_time
         self.Data = myoData.myo_Data()#数据类型
@@ -72,8 +90,13 @@ class capture():
                     ui.listWidget.addItem('Myo is connected!')
                 else:
                     ui.listWidget.addItem('Myo is not connected!')
-                self.thread = WorkThread(self.myos,self.hub,self.Data,self.guide,self.cap_interval)
+
+                self.plotCanvas = ui.Canvas
+                self.plotCanvas2 = ui.Canvas2
+                self.thread = WorkThread(self.myos,self.hub,self.Data,self.guide,self.cap_interval,self.plotCanvas,self.plotCanvas2)
                 self.thread.start()#数据的capture在另一线程中执行
+                self.plotCanvas.start()
+                self.plotCanvas2.start()
 
 
 
@@ -86,7 +109,7 @@ class capture():
 
     def save_file(self,guide,ui = myo_emg.Ui_MainWindow()):
         #没有目录创造目录
-        if not (guide.state == 2 and guide.state == 3):
+        if not (guide.state == 2 or guide.state == 3):
             ui.listWidget.addItem('Only save after stop or complete...')
         else:
             date_str = QDateTime.currentDateTime().toString("yyyy-MM-dd-hh-mm-ss")
