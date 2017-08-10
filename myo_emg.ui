@@ -21,6 +21,22 @@
     </sizepolicy>
    </property>
    <layout class="QGridLayout" name="gridLayout">
+    <item row="3" column="1">
+     <widget class="QMdiArea" name="mdiArea">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>330</width>
+        <height>0</height>
+       </size>
+      </property>
+     </widget>
+    </item>
     <item row="1" column="1">
      <widget class="QListWidget" name="listWidget">
       <property name="sizePolicy">
@@ -37,46 +53,101 @@
       </property>
      </widget>
     </item>
-    <item row="1" column="3" rowspan="2">
-     <widget class="QListWidget" name="listWidget_2">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>73</width>
-        <height>16777215</height>
-       </size>
+    <item row="2" column="1">
+     <widget class="Line" name="line_2">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
       </property>
      </widget>
     </item>
-    <item row="2" column="1">
-     <widget class="QMdiArea" name="mdiArea">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>330</width>
-        <height>0</height>
-       </size>
+    <item row="1" column="4">
+     <widget class="Line" name="line_3">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
       </property>
      </widget>
     </item>
     <item row="0" column="0">
      <layout class="QHBoxLayout" name="horizontalLayout_2"/>
     </item>
-    <item row="2" column="2">
+    <item row="2" column="4" rowspan="2">
+     <widget class="Line" name="line_4">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2" rowspan="3">
+     <widget class="Line" name="line">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="5" rowspan="3">
+     <widget class="QFrame" name="frame">
+      <property name="minimumSize">
+       <size>
+        <width>150</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(47, 47, 47);</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QLabel" name="gesture_image">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>131</width>
+         <height>131</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="Timer">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>140</y>
+         <width>131</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </widget>
+    </item>
+    <item row="1" column="3">
+     <widget class="QWidget" name="Canvas" native="true">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(0, 0, 0);</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="3">
      <widget class="QMdiArea" name="mdiArea_2"/>
     </item>
-    <item row="1" column="2">
-     <widget class="QTreeView" name="treeView"/>
+    <item row="2" column="3">
+     <widget class="Line" name="line_5">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -118,13 +189,8 @@
     <property name="title">
      <string>Capture</string>
     </property>
-    <widget class="QMenu" name="menuCapture_SEMG">
-     <property name="title">
-      <string>Capture SEMG</string>
-     </property>
-    </widget>
-    <addaction name="menuCapture_SEMG"/>
-    <addaction name="actionCapture_IMU"/>
+    <addaction name="actionCapture_emg"/>
+    <addaction name="actionCapture_imu"/>
    </widget>
    <widget class="QMenu" name="menuSession">
     <property name="sizePolicy">
@@ -204,6 +270,16 @@
   <action name="actionLoad_Profile">
    <property name="text">
     <string>Load Profile</string>
+   </property>
+  </action>
+  <action name="actionCapture_emg">
+   <property name="text">
+    <string>Capture EMG</string>
+   </property>
+  </action>
+  <action name="actionCapture_imu">
+   <property name="text">
+    <string>Capture IMU</string>
    </property>
   </action>
  </widget>
