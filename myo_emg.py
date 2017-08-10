@@ -8,6 +8,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import Canvas
+#更新一波
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
